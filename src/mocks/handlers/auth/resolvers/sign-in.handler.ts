@@ -23,7 +23,7 @@ export const signIn = async ({ request }: { request: Request }) => {
       success: true,
       message: "",
       data: {
-        token: "",
+        token: "fake-jwt-token-for-testing-" + Date.now(),
       },
     },
     {
