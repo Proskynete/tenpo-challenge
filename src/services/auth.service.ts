@@ -1,25 +1,18 @@
 import Cookies from "js-cookie";
 import axios from "axios";
+import type { LoginCredentials } from "../models/auth";
+import type { Response } from "../models/common";
 
 const TOKEN_KEY = "auth_token";
 const API_BASE_URL = "/v1/auth";
 
-export interface LoginCredentials {
-  email: string;
-  password: string;
-}
-
-export interface AuthResponse {
-  success: boolean;
-  message: string;
-  data: {
-    token: string;
-  } | null;
+interface LoginResponse {
+  token: string;
 }
 
 export const authService = {
-  async login(credentials: LoginCredentials): Promise<AuthResponse> {
-    const response = await axios.post<AuthResponse>(
+  async login(credentials: LoginCredentials): Promise<Response<LoginResponse>> {
+    const response = await axios.post<Response<LoginResponse>>(
       `${API_BASE_URL}/sign-in`,
       credentials
     );
