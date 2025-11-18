@@ -1,31 +1,19 @@
 import axios from "axios";
+import type { MoviesResponse } from "../models/movies";
 
-const API_BASE_URL = "/api/movies";
-
-export interface Movie {
-  id: number;
-  title: string;
-  overview: string;
-  poster_path: string;
-  backdrop_path: string;
-  release_date: string;
-  vote_average: number;
-  vote_count: number;
-}
-
-export interface MoviesResponse {
-  page: number;
-  results: Movie[];
-  total_pages: number;
-  total_results: number;
-}
+const TMDB_BASE_URL = "https://api.themoviedb.org/3";
+const TMDB_API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 
 export const moviesService = {
   async getPopularMovies(page: number = 1): Promise<MoviesResponse> {
     const response = await axios.get<MoviesResponse>(
-      `${API_BASE_URL}/popular`,
+      `${TMDB_BASE_URL}/movie/popular`,
       {
-        params: { page },
+        params: {
+          api_key: TMDB_API_KEY,
+          page,
+          language: "es-ES", // Spanish language for better UX
+        },
       }
     );
     return response.data;
