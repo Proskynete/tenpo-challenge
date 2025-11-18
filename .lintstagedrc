@@ -1,0 +1,6 @@
+{
+  "src/**/*.{ts,tsx,js,jsx}": [
+    "npm run lint",
+    "npm run lint:fix"
+  ]
+}
