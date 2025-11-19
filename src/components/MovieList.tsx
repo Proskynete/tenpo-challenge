@@ -1,12 +1,14 @@
 import { useRef, useEffect } from "react";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { useVirtualizer } from "@tanstack/react-virtual";
+import { useTranslation } from "react-i18next";
 import { moviesService } from "../services/movies.service";
 import type { Movie } from "../models/movies";
 import { formatDate } from "../utils/date";
 import { formatNumber } from "../utils/number";
 
 export const MovieList = () => {
+  const { t } = useTranslation();
   const parentRef = useRef<HTMLDivElement>(null);
 
   const {
@@ -64,7 +66,7 @@ export const MovieList = () => {
       <div className="flex items-center justify-center h-96">
         <div className="text-center">
           <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-blue-600 mx-auto mb-4" />
-          <p className="text-gray-600">Cargando películas...</p>
+          <p className="text-gray-600">{t("movies.loading")}</p>
         </div>
       </div>
     );
@@ -73,7 +75,7 @@ export const MovieList = () => {
   if (error) {
     return (
       <div className="bg-red-50 border border-red-200 text-red-700 p-4 rounded-lg">
-        Error al cargar las películas: {(error as Error).message}
+        {t("movies.errorLoading")}: {(error as Error).message}
       </div>
     );
   }
@@ -81,13 +83,13 @@ export const MovieList = () => {
   return (
     <div>
       <div className="mb-4 text-sm text-gray-600 flex gap-1">
-        Mostrando{" "}
+        {t("common.showing")}{" "}
         <span className="font-bold">{formatNumber(allMovies.length)}</span>
-        de
+        {t("common.of")}
         <span className="font-bold">
           {formatNumber(data?.pages[0]?.total_results || 0)}
         </span>
-        películas
+        {t("movies.movies")}
       </div>
 
       <div
@@ -139,13 +141,15 @@ export const MovieList = () => {
                           </svg>
                           {movie.vote_average.toFixed(1)}
                         </span>
-                        <span>{formatNumber(movie.vote_count)} votos</span>
+                        <span>
+                          {formatNumber(movie.vote_count)} {t("movies.votes")}
+                        </span>
                         <time dateTime={movie.release_date}>
                           {formatDate(movie.release_date)}
                         </time>
                       </div>
                       <p className="text-sm text-gray-600 line-clamp-3">
-                        {movie.overview || "Sin descripción"}
+                        {movie.overview || t("common.noDescription")}
                       </p>
                     </div>
                   </div>
@@ -160,7 +164,7 @@ export const MovieList = () => {
         <div className="mt-4 text-center">
           <div className="inline-flex items-center gap-2 text-gray-600">
             <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-blue-600" />
-            Cargando más películas...
+            {t("movies.loadingMore")}
           </div>
         </div>
       )}

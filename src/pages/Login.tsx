@@ -1,9 +1,12 @@
 import { useState, useEffect } from "react";
 import type { FormEvent } from "react";
 import { useLocation } from "wouter";
+import { useTranslation } from "react-i18next";
 import { useAuth } from "../hooks/useAuth";
+import { Button } from "@/components/ui/button";
 
 export const Login = () => {
+  const { t } = useTranslation();
   const [, setLocation] = useLocation();
   const { login, isLoading, loginResponse, isAuthenticated } = useAuth();
   const [email, setEmail] = useState("");
@@ -17,7 +20,7 @@ export const Login = () => {
 
   const errorMessage =
     loginResponse && !loginResponse.success
-      ? loginResponse.message || "Login failed. Please try again."
+      ? loginResponse.message || t("auth.errorLogin")
       : null;
 
   const handleSubmit = (e: FormEvent) => {
@@ -26,13 +29,13 @@ export const Login = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100">
+    <div className="min-h-screen flex items-center justify-center bg-linear-to-br from-blue-50 to-indigo-100">
       <div className="bg-white p-8 rounded-lg shadow-xl w-full max-w-md">
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold text-gray-800 mb-2">
-            Welcome Back
+            {t("auth.welcomeBack")}
           </h1>
-          <p className="text-gray-600">Sign in to continue to Movie Database</p>
+          <p className="text-gray-600">{t("auth.signInToContinue")}</p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-6">
@@ -41,7 +44,7 @@ export const Login = () => {
               htmlFor="email"
               className="block text-sm font-medium text-gray-700 mb-2"
             >
-              Email Address
+              {t("auth.email")}
             </label>
             <input
               id="email"
@@ -50,7 +53,7 @@ export const Login = () => {
               onChange={(e) => setEmail(e.target.value)}
               required
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition"
-              placeholder="Enter your email"
+              placeholder={t("auth.enterEmail")}
               disabled={isLoading}
             />
           </div>
@@ -60,7 +63,7 @@ export const Login = () => {
               htmlFor="password"
               className="block text-sm font-medium text-gray-700 mb-2"
             >
-              Password
+              {t("auth.password")}
             </label>
             <input
               id="password"
@@ -69,7 +72,7 @@ export const Login = () => {
               onChange={(e) => setPassword(e.target.value)}
               required
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition"
-              placeholder="Enter your password"
+              placeholder={t("auth.enterPassword")}
               disabled={isLoading}
             />
           </div>
@@ -80,19 +83,16 @@ export const Login = () => {
             </div>
           )}
 
-          <button
-            type="submit"
-            disabled={isLoading}
-            className="w-full bg-blue-600 text-white py-2 px-4 rounded-lg font-medium hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            {isLoading ? "Signing in..." : "Sign In"}
-          </button>
+          <Button size="full" type="submit" disabled={isLoading}>
+            {isLoading ? t("auth.signingIn") : t("auth.signIn")}
+          </Button>
         </form>
 
         <div className="mt-6 text-center text-sm text-gray-600">
           <p>
-            Use <span className="font-semibold">leopoldo.henchoz@tenpo.cl</span>{" "}
-            to login
+            {t("auth.useEmailToLogin", {
+              email: "leopoldo.henchoz@tenpo.cl",
+            })}
           </p>
         </div>
       </div>

@@ -1,8 +1,11 @@
 import { useLocation } from "wouter";
+import { useTranslation } from "react-i18next";
 import { useAuth } from "../hooks/useAuth";
 import { MovieList } from "../components/MovieList";
+import { Button } from "@/components/ui/button";
 
 export const Home = () => {
+  const { t } = useTranslation();
   const [, setLocation] = useLocation();
   const { logout } = useAuth();
 
@@ -18,18 +21,15 @@ export const Home = () => {
           <div className="flex justify-between items-center">
             <div>
               <h1 className="text-2xl font-bold text-gray-900">
-                Movie Database
+                {t("movies.title")}
               </h1>
               <p className="text-sm text-gray-600 mt-1">
-                Browse popular movies
+                {t("movies.browsePopular")}
               </p>
             </div>
-            <button
-              onClick={handleLogout}
-              className="px-4 py-2 bg-red-600 text-white rounded-lg font-medium hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition"
-            >
-              Logout
-            </button>
+            <Button size="sm" variant="destructive" onClick={handleLogout}>
+              {t("auth.logout")}
+            </Button>
           </div>
         </div>
       </header>
