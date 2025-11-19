@@ -3,6 +3,8 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 import { useVirtualizer } from "@tanstack/react-virtual";
 import { moviesService } from "../services/movies.service";
 import type { Movie } from "../models/movies";
+import { formatDate } from "../utils/date";
+import { formatNumber } from "../utils/number";
 
 export const MovieList = () => {
   const parentRef = useRef<HTMLDivElement>(null);
@@ -61,8 +63,8 @@ export const MovieList = () => {
     return (
       <div className="flex items-center justify-center h-96">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-blue-600 mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading movies...</p>
+          <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-blue-600 mx-auto mb-4" />
+          <p className="text-gray-600">Cargando películas...</p>
         </div>
       </div>
     );
@@ -71,16 +73,21 @@ export const MovieList = () => {
   if (error) {
     return (
       <div className="bg-red-50 border border-red-200 text-red-700 p-4 rounded-lg">
-        Error loading movies: {(error as Error).message}
+        Error al cargar las películas: {(error as Error).message}
       </div>
     );
   }
 
   return (
     <div>
-      <div className="mb-4 text-sm text-gray-600">
-        Showing {allMovies.length} of {data?.pages[0]?.total_results || 0}{" "}
-        movies
+      <div className="mb-4 text-sm text-gray-600 flex gap-1">
+        Mostrando{" "}
+        <span className="font-bold">{formatNumber(allMovies.length)}</span>
+        de
+        <span className="font-bold">
+          {formatNumber(data?.pages[0]?.total_results || 0)}
+        </span>
+        películas
       </div>
 
       <div
@@ -112,7 +119,10 @@ export const MovieList = () => {
                 <div className="p-4 border-b border-gray-100 hover:bg-gray-50 transition">
                   <div className="flex gap-4">
                     <div className="shrink-0 w-24 h-36 bg-linear-to-br from-gray-200 to-gray-300 rounded-lg flex items-center justify-center text-gray-500 text-xs">
-                      Sin imagen
+                      <img
+                        src={`https://media.themoviedb.org/t/p/w220_and_h330_face/${movie.poster_path}`}
+                        className="w-full h-full object-cover rounded-lg"
+                      />
                     </div>
                     <div className="flex-1 min-w-0">
                       <h3 className="text-lg font-semibold text-gray-800 mb-2 truncate">
@@ -129,11 +139,13 @@ export const MovieList = () => {
                           </svg>
                           {movie.vote_average.toFixed(1)}
                         </span>
-                        <span>{movie.vote_count} votes</span>
-                        <span>{movie.release_date}</span>
+                        <span>{formatNumber(movie.vote_count)} votos</span>
+                        <time dateTime={movie.release_date}>
+                          {formatDate(movie.release_date)}
+                        </time>
                       </div>
                       <p className="text-sm text-gray-600 line-clamp-3">
-                        {movie.overview}
+                        {movie.overview || "Sin descripción"}
                       </p>
                     </div>
                   </div>
@@ -147,8 +159,8 @@ export const MovieList = () => {
       {isFetchingNextPage && (
         <div className="mt-4 text-center">
           <div className="inline-flex items-center gap-2 text-gray-600">
-            <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-blue-600"></div>
-            Loading more...
+            <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-blue-600" />
+            Cargando más películas...
           </div>
         </div>
       )}
