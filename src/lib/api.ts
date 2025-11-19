@@ -1,5 +1,6 @@
 import axios, { type AxiosError, type InternalAxiosRequestConfig } from "axios";
 import { getToken } from "../utils/cookies";
+import { getLocale } from "../utils/common";
 
 // Environment variables
 const TMDB_BASE_URL =
@@ -102,7 +103,7 @@ export const tmdbApi = axios.create({
   baseURL: TMDB_BASE_URL,
   params: {
     api_key: TMDB_API_KEY,
-    language: "es-ES", // Default language for TMDb responses
+    language: getLocale(),
   },
 });
 
