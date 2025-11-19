@@ -2,7 +2,7 @@ import { useRef, useEffect } from "react";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { useVirtualizer } from "@tanstack/react-virtual";
 import { moviesService } from "../services/movies.service";
-import type { Movie } from "../services/movies.service";
+import type { Movie } from "../models/movies";
 
 export const MovieList = () => {
   const parentRef = useRef<HTMLDivElement>(null);
@@ -111,8 +111,8 @@ export const MovieList = () => {
               >
                 <div className="p-4 border-b border-gray-100 hover:bg-gray-50 transition">
                   <div className="flex gap-4">
-                    <div className="flex-shrink-0 w-24 h-36 bg-gradient-to-br from-gray-200 to-gray-300 rounded-lg flex items-center justify-center text-gray-500 text-xs">
-                      No Image
+                    <div className="shrink-0 w-24 h-36 bg-linear-to-br from-gray-200 to-gray-300 rounded-lg flex items-center justify-center text-gray-500 text-xs">
+                      Sin imagen
                     </div>
                     <div className="flex-1 min-w-0">
                       <h3 className="text-lg font-semibold text-gray-800 mb-2 truncate">
