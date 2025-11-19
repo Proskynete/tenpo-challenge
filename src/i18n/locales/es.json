@@ -6,7 +6,8 @@
     "of": "de",
     "noData": "Sin datos",
     "noDescription": "Sin descripción",
-    "noImage": "Sin imagen"
+    "noImage": "Sin imagen",
+    "noVotes": "Sin votos aún"
   },
   "movies": {
     "title": "Películas",

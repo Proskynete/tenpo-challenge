@@ -6,7 +6,8 @@
     "of": "of",
     "noData": "No data",
     "noDescription": "No description",
-    "noImage": "No image"
+    "noImage": "No image",
+    "noVotes": "No votes yet"
   },
   "movies": {
     "title": "Movies",
