@@ -163,6 +163,3 @@ tmdbApi.interceptors.response.use(
     return Promise.reject(error);
   }
 );
-
-// Legacy export for backward compatibility
-export const apiAdapter = authApi;
