@@ -1,22 +1,7 @@
-import { Route, Switch, Redirect } from "wouter";
-import { Login } from "./pages/Login";
-import { Home } from "./pages/Home";
-import { ProtectedRoute } from "./components/ProtectedRoute";
+import { Router } from "./routes";
 
 const App = () => {
-  return (
-    <Switch>
-      <Route path="/login" component={Login} />
-      <Route path="/">
-        <ProtectedRoute>
-          <Home />
-        </ProtectedRoute>
-      </Route>
-      <Route>
-        <Redirect to="/login" />
-      </Route>
-    </Switch>
-  );
+  return <Router />;
 };
 
 export default App;
