@@ -18,7 +18,8 @@ export const useAuth = () => {
     },
   });
 
-  const logout = useCallback(() => {
+  const logout = useCallback(async () => {
+    await authService.logout();
     removeToken();
     setIsAuthenticated(false);
   }, []);
