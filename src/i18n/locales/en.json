@@ -1,0 +1,46 @@
+{
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "showing": "Showing",
+    "of": "of",
+    "noData": "No data",
+    "noDescription": "No description",
+    "noImage": "No image"
+  },
+  "movies": {
+    "title": "Movies",
+    "browsePopular": "Browse popular movies",
+    "loading": "Loading movies...",
+    "loadingMore": "Loading more movies...",
+    "errorLoading": "Error loading movies",
+    "movies": "movies",
+    "votes": "votes",
+    "noMovies": "No movies available"
+  },
+  "auth": {
+    "login": "Login",
+    "logout": "Logout",
+    "email": "Email",
+    "password": "Password",
+    "username": "Username",
+    "welcome": "Welcome",
+    "welcomeBack": "Welcome Back",
+    "signIn": "Sign In",
+    "signingIn": "Signing in...",
+    "signOut": "Sign Out",
+    "signInToContinue": "Sign in to continue",
+    "enterEmail": "Enter your email",
+    "enterPassword": "Enter your password",
+    "useEmailToLogin": "Use {email} to login",
+    "errorLogin": "Login failed. Please try again.",
+    "invalidCredentials": "Invalid credentials"
+  },
+  "errors": {
+    "generic": "An error occurred",
+    "network": "Network error",
+    "notFound": "Not found",
+    "unauthorized": "Unauthorized",
+    "serverError": "Server error"
+  }
+}

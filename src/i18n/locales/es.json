@@ -1,0 +1,46 @@
+{
+  "common": {
+    "loading": "Cargando...",
+    "error": "Error",
+    "showing": "Mostrando",
+    "of": "de",
+    "noData": "Sin datos",
+    "noDescription": "Sin descripción",
+    "noImage": "Sin imagen"
+  },
+  "movies": {
+    "title": "Películas",
+    "browsePopular": "Explora las películas más populares",
+    "loading": "Cargando películas...",
+    "loadingMore": "Cargando más películas...",
+    "errorLoading": "Error al cargar las películas",
+    "movies": "películas",
+    "votes": "votos",
+    "noMovies": "No hay películas disponibles"
+  },
+  "auth": {
+    "login": "Iniciar sesión",
+    "logout": "Cerrar sesión",
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    "username": "Usuario",
+    "welcome": "Bienvenido",
+    "welcomeBack": "Bienvenido de nuevo",
+    "signIn": "Ingresar",
+    "signingIn": "Ingresando...",
+    "signOut": "Salir",
+    "signInToContinue": "Inicia sesión para continuar",
+    "enterEmail": "Ingresa tu correo electrónico",
+    "enterPassword": "Ingresa tu contraseña",
+    "useEmailToLogin": "Usa {email} para iniciar sesión",
+    "errorLogin": "Error al iniciar sesión. Por favor, inténtalo de nuevo.",
+    "invalidCredentials": "Credenciales inválidas"
+  },
+  "errors": {
+    "generic": "Ha ocurrido un error",
+    "network": "Error de conexión",
+    "notFound": "No encontrado",
+    "unauthorized": "No autorizado",
+    "serverError": "Error del servidor"
+  }
+}
