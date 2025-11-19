@@ -32,7 +32,7 @@
     "signInToContinue": "Sign in to continue",
     "enterEmail": "Enter your email",
     "enterPassword": "Enter your password",
-    "useEmailToLogin": "Use {email} to login",
+    "useEmailToLogin": "Use {{email}} to login",
     "errorLogin": "Login failed. Please try again.",
     "invalidCredentials": "Invalid credentials"
   },
