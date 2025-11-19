@@ -1,4 +1,4 @@
 import { handlers as authHandlers } from "./auth";
-// Movies handlers removed - using real TMDb API instead
+import { handlers as movieHadlers } from "./movies";
 
-export const handlers = [...authHandlers];
+export const handlers = [...authHandlers, ...movieHadlers];
