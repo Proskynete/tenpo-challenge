@@ -1,4 +1,5 @@
 import "./index.css";
+import "./i18n";
 
 import { createRoot } from "react-dom/client";
 import { QueryClientProvider } from "@tanstack/react-query";
