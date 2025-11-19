@@ -6,6 +6,8 @@ import { moviesService } from "../services/movies.service";
 import type { Movie } from "../models/movies";
 import { formatDate } from "../utils/date";
 import { formatNumber } from "../utils/number";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { AlertCircle, Loader2 } from "lucide-react";
 
 export const MovieList = () => {
   const { t } = useTranslation();
@@ -64,9 +66,9 @@ export const MovieList = () => {
   if (isLoading) {
     return (
       <div className="flex items-center justify-center h-96">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-blue-600 mx-auto mb-4" />
-          <p className="text-gray-600">{t("movies.loading")}</p>
+        <div className="flex flex-col items-center gap-4">
+          <Loader2 className="h-16 w-16 animate-spin text-primary" />
+          <p className="text-muted-foreground">{t("movies.loading")}</p>
         </div>
       </div>
     );
@@ -74,9 +76,12 @@ export const MovieList = () => {
 
   if (error) {
     return (
-      <div className="bg-red-50 border border-red-200 text-red-700 p-4 rounded-lg">
-        {t("movies.errorLoading")}: {(error as Error).message}
-      </div>
+      <Alert variant="destructive">
+        <AlertCircle className="h-4 w-4" />
+        <AlertDescription>
+          {t("movies.errorLoading")}: {(error as Error).message}
+        </AlertDescription>
+      </Alert>
     );
   }
 
@@ -162,8 +167,8 @@ export const MovieList = () => {
 
       {isFetchingNextPage && (
         <div className="mt-4 text-center">
-          <div className="inline-flex items-center gap-2 text-gray-600">
-            <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-blue-600" />
+          <div className="inline-flex items-center gap-2 text-muted-foreground">
+            <Loader2 className="h-4 w-4 animate-spin" />
             {t("movies.loadingMore")}
           </div>
         </div>
