@@ -3,7 +3,7 @@ import { getLocale } from "./common";
 export const formatDate = (date: Date | string): string => {
   const options: Intl.DateTimeFormatOptions = {
     year: "numeric",
-    month: "long",
+    month: "short",
     day: "numeric",
   };
 
