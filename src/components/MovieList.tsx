@@ -80,7 +80,6 @@ export const MovieList = () => {
         ))}
       </div>
 
-      {/* Intersection Observer trigger */}
       <div ref={observerRef} className="h-10" />
 
       {isFetchingNextPage && (
