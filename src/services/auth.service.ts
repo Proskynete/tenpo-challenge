@@ -6,7 +6,9 @@ interface LoginResponse {
   token: string;
 }
 
-const login = async (credentials: LoginCredentials) => {
+const login = async (
+  credentials: LoginCredentials
+): Promise<Response<LoginResponse | null>> => {
   const response = await authApi.post<Response<LoginResponse>>(
     "/sign-in",
     credentials
