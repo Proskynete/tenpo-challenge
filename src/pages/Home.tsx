@@ -10,8 +10,14 @@ export const Home = () => {
   const { logout } = useAuth();
 
   const handleLogout = async () => {
-    await logout();
-    setLocation("/login");
+    try {
+      await logout();
+      setLocation("/login");
+    } catch (error) {
+      console.error("Logout error:", error);
+      // Even if logout fails, we might want to redirect to login
+      // or show an error message. For now, we just log the error.
+    }
   };
 
   return (
@@ -27,6 +33,9 @@ export const Home = () => {
                 {t("movies.browsePopular")}
               </p>
             </div>
+
+            <img src="/tenpo.png" alt="Logo" className="h-8" />
+
             <Button size="sm" variant="destructive" onClick={handleLogout}>
               {t("auth.logout")}
             </Button>
