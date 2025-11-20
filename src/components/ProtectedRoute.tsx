@@ -1,5 +1,6 @@
-import { Redirect } from "wouter";
 import type { PropsWithChildren } from "react";
+import { Redirect } from "wouter";
+
 import { getToken } from "../utils/cookies";
 
 export const ProtectedRoute = ({ children }: PropsWithChildren) => {

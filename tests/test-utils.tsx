@@ -1,9 +1,8 @@
-import type { PropsWithChildren, ReactElement } from "react";
-import { render } from "@testing-library/react";
-import type { RenderOptions } from "@testing-library/react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { I18nextProvider } from "react-i18next";
+import { render, type RenderOptions } from "@testing-library/react";
 import i18n from "i18next";
+import type { PropsWithChildren, ReactElement } from "react";
+import { I18nextProvider } from "react-i18next";
 
 // Create a test i18n instance
 const createTestI18n = () => {
@@ -44,7 +43,7 @@ const createTestI18n = () => {
 };
 
 // Create a new QueryClient for each test
-export const createTestQueryClient = () =>
+const createTestQueryClient = () =>
   new QueryClient({
     defaultOptions: {
       queries: {
@@ -78,10 +77,7 @@ interface CustomRenderOptions extends Omit<RenderOptions, "wrapper"> {
   queryClient?: QueryClient;
 }
 
-export const customRender = (
-  ui: ReactElement,
-  options?: CustomRenderOptions
-) => {
+const customRender = (ui: ReactElement, options?: CustomRenderOptions) => {
   const { queryClient, ...renderOptions } = options || {};
 
   return render(ui, {

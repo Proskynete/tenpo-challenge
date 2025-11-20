@@ -1,4 +1,5 @@
 import { http } from "msw";
+
 import { getPopularMovies } from "./resolvers/get-polular-movies.resolver";
 
 const endpoints = {

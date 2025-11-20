@@ -1,8 +1,10 @@
-import { useLocation } from "wouter";
 import { useTranslation } from "react-i18next";
-import { useAuth } from "../hooks/useAuth";
-import { MovieList } from "../components/MovieList";
+import { useLocation } from "wouter";
+
 import { Button } from "@/components/ui/button";
+
+import { MovieList } from "../components/MovieList";
+import { useAuth } from "../hooks/useAuth";
 
 export const Home = () => {
   const { t } = useTranslation();

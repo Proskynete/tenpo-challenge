@@ -1,7 +1,8 @@
-import { describe, it, expect, vi, beforeEach } from "vitest";
-import { authService } from "../../src/services/auth.service";
+import { beforeEach, describe, expect, it, vi } from "vitest";
+
 import { authApi } from "../../src/lib/api";
 import type { Response } from "../../src/models/common";
+import { authService } from "../../src/services/auth.service";
 
 // Mock the API module
 vi.mock("../../src/lib/api", () => ({

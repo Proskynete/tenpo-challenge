@@ -1,6 +1,7 @@
-import { describe, it, expect, vi, beforeEach } from "vitest";
 import Cookies from "js-cookie";
-import { setToken, getToken, removeToken } from "../../src/utils/cookies";
+import { beforeEach, describe, expect, it, vi } from "vitest";
+
+import { getToken, removeToken, setToken } from "../../src/utils/cookies";
 
 // Mock js-cookie
 vi.mock("js-cookie", () => ({

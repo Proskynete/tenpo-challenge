@@ -1,7 +1,8 @@
-import { describe, it, expect, vi, beforeEach } from "vitest";
-import { moviesService } from "../../src/services/movies.service";
+import { beforeEach, describe, expect, it, vi } from "vitest";
+
 import { tmdbApi } from "../../src/lib/api";
 import type { MoviesResponse } from "../../src/models/movies";
+import { moviesService } from "../../src/services/movies.service";
 
 // Mock the API module
 vi.mock("../../src/lib/api", () => ({

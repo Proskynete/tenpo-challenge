@@ -1,8 +1,9 @@
+import { useTranslation } from "react-i18next";
+
+import { Badge } from "@/components/ui/badge";
+import { Card, CardContent } from "@/components/ui/card";
 import type { Movie } from "@/models/movies";
 import { formatDate } from "@/utils/date";
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { useTranslation } from "react-i18next";
 
 export const CardMovie = ({ movie }: { movie: Movie }) => {
   const { t } = useTranslation();

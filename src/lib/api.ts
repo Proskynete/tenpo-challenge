@@ -1,6 +1,7 @@
 import axios, { type AxiosError, type InternalAxiosRequestConfig } from "axios";
-import { getToken } from "../utils/cookies";
+
 import { getLocale } from "../utils/common";
+import { getToken } from "../utils/cookies";
 
 // Environment variables
 const TMDB_BASE_URL =

@@ -1,13 +1,14 @@
-import { describe, it, expect, vi, beforeEach } from "vitest";
-import { render, screen, waitFor } from "../test-utils";
 import userEvent from "@testing-library/user-event";
-import { Login } from "../../src/pages/Login";
-import * as useAuthHook from "../../src/hooks/useAuth";
+import type { AxiosError } from "axios";
+import { useEffect } from "react";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import { Router, useLocation } from "wouter";
 import { memoryLocation } from "wouter/memory-location";
-import type { AxiosError } from "axios";
+
+import * as useAuthHook from "../../src/hooks/useAuth";
 import type { Response } from "../../src/models/common";
-import { useEffect } from "react";
+import { Login } from "../../src/pages/Login";
+import { render, screen, waitFor } from "../test-utils";
 
 // Mock useAuth hook
 vi.mock("../../src/hooks/useAuth", () => ({

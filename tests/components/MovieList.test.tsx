@@ -1,8 +1,9 @@
-import { describe, it, expect, vi, beforeEach } from "vitest";
-import { render, screen, waitFor } from "../test-utils";
+import { beforeEach, describe, expect, it, vi } from "vitest";
+
 import { MovieList } from "../../src/components/MovieList";
-import { moviesService } from "../../src/services/movies.service";
 import type { MoviesResponse } from "../../src/models/movies";
+import { moviesService } from "../../src/services/movies.service";
+import { render, screen, waitFor } from "../test-utils";
 
 // Mock the movies service
 vi.mock("../../src/services/movies.service", () => ({

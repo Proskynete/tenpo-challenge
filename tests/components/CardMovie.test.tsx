@@ -1,8 +1,9 @@
-import { describe, it, expect, vi } from "vitest";
-import { render, screen } from "../test-utils";
+import { describe, expect, it, vi } from "vitest";
+
 import { CardMovie } from "../../src/components/CardMovie";
 import type { Movie } from "../../src/models/movies";
 import * as dateUtils from "../../src/utils/date";
+import { render, screen } from "../test-utils";
 
 // Mock date utility
 vi.mock("../../src/utils/date", () => ({

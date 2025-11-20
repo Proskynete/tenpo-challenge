@@ -1,9 +1,10 @@
-import { describe, it, expect, vi, beforeEach } from "vitest";
 import { renderHook, waitFor } from "@testing-library/react";
+import { beforeEach, describe, expect, it, vi } from "vitest";
+
 import { useAuth } from "../../src/hooks/useAuth";
-import { AllTheProviders } from "../test-utils";
-import * as cookiesUtil from "../../src/utils/cookies";
 import * as authService from "../../src/services/auth.service";
+import * as cookiesUtil from "../../src/utils/cookies";
+import { AllTheProviders } from "../test-utils";
 
 // Mock dependencies
 vi.mock("../../src/utils/cookies", () => ({

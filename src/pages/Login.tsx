@@ -1,14 +1,15 @@
-import { useState, useEffect } from "react";
-import type { FormEvent } from "react";
-import { useLocation } from "wouter";
-import { useTranslation } from "react-i18next";
 import type { AxiosError } from "axios";
-import { useAuth } from "../hooks/useAuth";
+import { AlertCircle } from "lucide-react";
+import { type FormEvent, useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
+import { useLocation } from "wouter";
+
+import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Alert, AlertDescription } from "@/components/ui/alert";
-import { AlertCircle } from "lucide-react";
+
+import { useAuth } from "../hooks/useAuth";
 import type { Response } from "../models/common";
 
 export const Login = () => {

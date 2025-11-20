@@ -1,10 +1,12 @@
-import { useRef, useEffect } from "react";
 import { useInfiniteQuery } from "@tanstack/react-query";
-import { useTranslation } from "react-i18next";
-import { moviesService } from "../services/movies.service";
-import type { Movie } from "../models/movies";
-import { Alert, AlertDescription } from "@/components/ui/alert";
 import { AlertCircle, Loader2 } from "lucide-react";
+import { useEffect, useRef } from "react";
+import { useTranslation } from "react-i18next";
+
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import type { Movie } from "@/models/movies";
+import { moviesService } from "@/services/movies.service";
+
 import { CardMovie } from "./CardMovie";
 
 export const MovieList = () => {

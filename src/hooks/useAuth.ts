@@ -1,8 +1,9 @@
-import { useState, useCallback } from "react";
 import { useMutation } from "@tanstack/react-query";
-import { authService } from "../services/auth.service";
-import type { LoginCredentials } from "../models/auth";
-import { getToken, removeToken, setToken } from "../utils/cookies";
+import { useCallback, useState } from "react";
+
+import type { LoginCredentials } from "@/models/auth";
+import { authService } from "@/services/auth.service";
+import { getToken, removeToken, setToken } from "@/utils/cookies";
 
 export const useAuth = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(() => !!getToken());

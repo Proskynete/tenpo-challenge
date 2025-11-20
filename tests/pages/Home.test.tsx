@@ -1,11 +1,12 @@
-import { describe, it, expect, vi, beforeEach } from "vitest";
-import { render, screen, waitFor } from "../test-utils";
 import userEvent from "@testing-library/user-event";
-import { Home } from "../../src/pages/Home";
-import * as useAuthHook from "../../src/hooks/useAuth";
+import { useEffect } from "react";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import { Router, useLocation } from "wouter";
 import { memoryLocation } from "wouter/memory-location";
-import { useEffect } from "react";
+
+import * as useAuthHook from "../../src/hooks/useAuth";
+import { Home } from "../../src/pages/Home";
+import { render, screen, waitFor } from "../test-utils";
 
 // Mock useAuth hook
 vi.mock("../../src/hooks/useAuth", () => ({

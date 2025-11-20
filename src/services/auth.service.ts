@@ -1,6 +1,6 @@
+import { authApi } from "../lib/api";
 import type { LoginCredentials } from "../models/auth";
 import type { Response } from "../models/common";
-import { authApi } from "../lib/api";
 
 interface LoginResponse {
   token: string;

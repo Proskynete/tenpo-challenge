@@ -1,10 +1,11 @@
-import { describe, it, expect, vi, beforeEach } from "vitest";
-import { render, screen, waitFor } from "../test-utils";
-import { ProtectedRoute } from "../../src/components/ProtectedRoute";
-import * as cookiesUtil from "../../src/utils/cookies";
+import { useEffect } from "react";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import { Router, useLocation } from "wouter";
 import { memoryLocation } from "wouter/memory-location";
-import { useEffect } from "react";
+
+import { ProtectedRoute } from "../../src/components/ProtectedRoute";
+import * as cookiesUtil from "../../src/utils/cookies";
+import { render, screen, waitFor } from "../test-utils";
 
 // Mock cookies utility
 vi.mock("../../src/utils/cookies", () => ({
