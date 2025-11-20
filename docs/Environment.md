@@ -359,7 +359,6 @@ Vite loads environment variables in this order (last one wins):
    ```
 
 3. **Check deployment platform env vars:**
-   - Vercel: Settings → Environment Variables
    - Netlify: Site settings → Environment variables
    - GitHub Pages: Repository settings → Secrets
 
