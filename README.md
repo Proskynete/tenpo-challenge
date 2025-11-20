@@ -215,8 +215,7 @@ tenpo-challenge/
 │   ├── setup.ts             # Test setup
 │   └── test-utils.tsx       # Testing utilities
 ├── docs/                    # Additional documentation
-│   ├── Architecture.md      # Architecture details
-│   └── Environment.md       # Environment variables
+│   └── Architecture.md      # Architecture details
 ├── public/                  # Static assets
 ├── .env.example             # Environment variables template
 ├── components.json          # shadcn/ui configuration
@@ -349,7 +348,6 @@ const languageCode = browserLocale.split("-")[0]; // "es"
 For more detailed information, check the following documentation:
 
 - [Architecture Guide](./docs/Architecture.md) - Detailed architecture decisions and patterns
-- [Environment Variables](./docs/Environment.md) - Complete environment configuration guide
 
 ## Development Guidelines
 
