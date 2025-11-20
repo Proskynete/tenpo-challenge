@@ -6,6 +6,7 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.9-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Vite](https://img.shields.io/badge/Vite-7.2-646CFF?logo=vite&logoColor=white)](https://vitejs.dev/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4.0-38B2AC?logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
+[![Coverage Status](https://coveralls.io/repos/github/Proskynete/tenpo-challenge/badge.svg?branch=main)](https://coveralls.io/github/Proskynete/tenpo-challenge?branch=main)
 
 ## Table of Contents
 

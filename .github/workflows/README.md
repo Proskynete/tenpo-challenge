@@ -18,7 +18,7 @@ Comprehensive CI pipeline that runs on every push and pull request to `main` and
 2. **Test** - Test suite execution
    - Runs on Node.js 22.x and 24.x
    - Executes all tests with coverage
-   - Uploads coverage to Codecov (Node 24.x only)
+   - Uploads coverage to Coveralls (Node 24.x only)
 
 3. **Build** - Production build
    - Builds the project for production
@@ -36,7 +36,7 @@ Standalone test workflow for running the test suite.
 **Features:**
 - Matrix testing on Node.js 22.x and 24.x
 - Coverage report generation
-- Codecov integration
+- Coveralls integration
 - Archives coverage reports (30-day retention)
 
 **Triggers:**
@@ -102,14 +102,14 @@ npm run build
 npx tsc --noEmit
 ```
 
-### Codecov Integration
+### Coveralls Integration
 
-To enable Codecov integration:
+To enable Coveralls integration:
 
-1. Sign up at [codecov.io](https://codecov.io)
+1. Sign up at [coveralls.io](https://coveralls.io)
 2. Add your repository
-3. Get your Codecov token
-4. Add it as a repository secret: `CODECOV_TOKEN`
+3. The workflows use `GITHUB_TOKEN` which is automatically provided by GitHub Actions
+4. No additional secret configuration is required
 
 ### Workflow Status Badges
 
@@ -120,6 +120,7 @@ Add these badges to your README.md:
 ![Test](https://github.com/username/repo/workflows/Test/badge.svg)
 ![Lint](https://github.com/username/repo/workflows/Lint/badge.svg)
 ![Build](https://github.com/username/repo/workflows/Build/badge.svg)
+[![Coverage Status](https://coveralls.io/repos/github/username/repo/badge.svg?branch=main)](https://coveralls.io/github/username/repo?branch=main)
 ```
 
 ---

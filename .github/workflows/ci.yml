@@ -58,15 +58,14 @@ jobs:
       - name: Run tests with coverage
         run: npm run test:coverage
 
-      - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v4
+      - name: Upload coverage to Coveralls
+        uses: coverallsapp/github-action@v2
         if: matrix.node-version == '24.x'
         with:
-          files: ./coverage/lcov.info
-          flags: unittests
-          fail_ci_if_error: false
-        env:
-          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path-to-lcov: ./coverage/lcov.info
+          flag-name: node-${{ matrix.node-version }}
+          parallel: false
 
   build:
     name: Build
