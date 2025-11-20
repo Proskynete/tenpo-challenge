@@ -10,6 +10,9 @@
 - [API Layer Architecture](#api-layer-architecture)
 - [State Management](#state-management)
 - [Component Architecture](#component-architecture)
+- [Testing Strategy](#testing-strategy)
+- [CI/CD Pipeline](#cicd-pipeline)
+- [Code Quality Tools](#code-quality-tools)
 - [Scalability Considerations](#scalability-considerations)
 
 ## Overview
@@ -535,6 +538,378 @@ export const useAuth = () => {
 - ✅ Single source of truth
 - ✅ Easy to test
 
+## Testing Strategy
+
+### Overview
+
+The application uses **Vitest** with **@testing-library/react** for comprehensive test coverage across all layers of the application.
+
+**Location:** `tests/` directory
+
+**Configuration:** `vitest.config.ts`
+
+### Test Coverage Requirements
+
+```typescript
+// vitest.config.ts
+coverage: {
+  provider: 'v8',
+  reporter: ['text', 'json', 'html', 'lcov'],
+  thresholds: {
+    lines: 80,
+    functions: 80,
+    branches: 80,
+    statements: 80,
+  },
+}
+```
+
+### Test Structure
+
+```
+tests/
+├── components/          # Component tests
+│   ├── CardMovie.test.tsx
+│   ├── MovieList.test.tsx
+│   └── ProtectedRoute.test.tsx
+├── hooks/               # Hook tests
+│   └── useAuth.test.ts
+├── pages/               # Page tests
+│   ├── Home.test.tsx
+│   └── Login.test.tsx
+├── services/            # Service tests
+│   ├── auth.service.test.ts
+│   └── movies.service.test.ts
+├── utils/               # Utility tests
+│   ├── cookies.test.ts
+│   ├── date.test.ts
+│   └── number.test.ts
+├── setup.ts             # Test setup
+└── test-utils.tsx       # Testing utilities
+```
+
+### Testing Utilities
+
+**Location:** `tests/test-utils.tsx`
+
+```typescript
+export const AllTheProviders = ({
+  children,
+  queryClient = createTestQueryClient(),
+}: PropsWithChildren<AllTheProvidersProps>) => {
+  const testI18n = createTestI18n();
+
+  return (
+    <QueryClientProvider client={queryClient}>
+      <I18nextProvider i18n={testI18n}>{children}</I18nextProvider>
+    </QueryClientProvider>
+  );
+};
+
+// Custom render with all providers
+const customRender = (ui: ReactElement, options?: CustomRenderOptions) => {
+  const { queryClient, ...renderOptions } = options || {};
+
+  return render(ui, {
+    wrapper: ({ children }) => (
+      <AllTheProviders queryClient={queryClient}>{children}</AllTheProviders>
+    ),
+    ...renderOptions,
+  });
+};
+```
+
+### Test Categories
+
+**1. Component Tests**
+- Render tests (component displays correctly)
+- Interaction tests (user events)
+- Integration tests (with providers)
+- Examples: `CardMovie.test.tsx`, `MovieList.test.tsx`
+
+**2. Hook Tests**
+- Custom hook behavior
+- State management
+- Side effects
+- Example: `useAuth.test.ts`
+
+**3. Service Tests**
+- API calls
+- Response handling
+- Error handling
+- Examples: `auth.service.test.ts`, `movies.service.test.ts`
+
+**4. Utility Tests**
+- Pure functions
+- Data transformations
+- Edge cases
+- Examples: `cookies.test.ts`, `date.test.ts`, `number.test.ts`
+
+### Running Tests
+
+```bash
+npm test              # Run all tests once
+npm run test:watch    # Run tests in watch mode
+npm run test:ui       # Open Vitest UI for interactive testing
+npm run test:coverage # Run tests with coverage report
+```
+
+### Mocking Strategy
+
+**MSW (Mock Service Worker)** is used for API mocking:
+
+```typescript
+// tests/setup.ts
+import { mockServer } from '../src/mocks/server';
+
+beforeAll(() => mockServer.listen({ onUnhandledRequest: 'error' }));
+afterEach(() => mockServer.resetHandlers());
+afterAll(() => mockServer.close());
+```
+
+**Benefits:**
+- ✅ Realistic API mocking
+- ✅ Works in both tests and development
+- ✅ No code changes needed
+- ✅ Type-safe mocks
+
+## CI/CD Pipeline
+
+### Overview
+
+The application uses **GitHub Actions** for continuous integration and deployment with automated testing, linting, and builds.
+
+**Location:** `.github/workflows/`
+
+### Workflows
+
+#### 1. CI Workflow (`ci.yml`)
+
+**Triggers:** Push to any branch, Pull requests to `main`
+
+**Jobs:**
+```yaml
+- Checkout code
+- Setup Node.js (22.x, 24.x)
+- Install dependencies
+- Run linter
+- Run tests with coverage
+- Upload coverage to Coveralls (Node 24.x only)
+- Run build
+```
+
+**Matrix Testing:**
+- Node.js 22.x
+- Node.js 24.x
+
+#### 2. Test Workflow (`test.yml`)
+
+**Triggers:** Push to `main`, Pull requests to `main`
+
+**Features:**
+- Dedicated test execution
+- Coverage report generation
+- Coveralls integration
+- 30-day artifact retention
+
+```yaml
+- name: Upload coverage to Coveralls
+  uses: coverallsapp/github-action@v2
+  if: matrix.node-version == '24.x'
+  with:
+    github-token: ${{ secrets.GITHUB_TOKEN }}
+    path-to-lcov: ./coverage/lcov.info
+```
+
+#### 3. Lint Workflow (`lint.yml`)
+
+**Triggers:** Push to any branch
+
+**Purpose:** Fast feedback on code quality
+
+```yaml
+- Run ESLint on all TypeScript files
+- Check code formatting with Prettier
+- Validate import sorting
+```
+
+#### 4. Build Workflow (`build.yml`)
+
+**Triggers:** Push to `main`, Pull requests to `main`
+
+**Purpose:** Verify production builds
+
+```yaml
+- Type-check with TypeScript
+- Build for production
+- Upload build artifacts (30-day retention)
+```
+
+### Coverage Reporting
+
+**Service:** Coveralls
+
+**Integration:** Automatic via `GITHUB_TOKEN`
+
+**Badge:**
+```markdown
+[![Coverage Status](https://coveralls.io/repos/github/Proskynete/tenpo-challenge/badge.svg?branch=main)](https://coveralls.io/github/Proskynete/tenpo-challenge?branch=main)
+```
+
+**Features:**
+- ✅ No additional token needed for public repos
+- ✅ Automatic coverage tracking
+- ✅ Historical coverage data
+- ✅ Pull request comments
+
+### Workflow Dependencies
+
+```
+Push/PR
+   │
+   ├─► CI Workflow (parallel)
+   │   ├─► Lint
+   │   ├─► Test + Coverage
+   │   └─► Build
+   │
+   ├─► Test Workflow (parallel)
+   │   └─► Coverage → Coveralls
+   │
+   ├─► Lint Workflow (parallel)
+   │   ├─► ESLint
+   │   └─► Prettier
+   │
+   └─► Build Workflow (parallel)
+       └─► TypeScript + Vite Build
+```
+
+## Code Quality Tools
+
+### ESLint Configuration
+
+**Location:** `eslint.config.js`
+
+**Format:** Flat config (ESLint 9+)
+
+```javascript
+export default defineConfig([
+  globalIgnores(["dist", "public", "scripts"]),
+  {
+    files: ["**/*.{ts,tsx}"],
+    extends: [
+      js.configs.recommended,
+      tseslint.configs.recommended,
+      reactHooks.configs.flat.recommended,
+      reactRefresh.configs.vite,
+      prettier,
+    ],
+    plugins: {
+      "simple-import-sort": simpleImportSort,
+    },
+    rules: {
+      "simple-import-sort/imports": "error",
+      "simple-import-sort/exports": "error",
+      "no-duplicate-imports": "error",
+      "no-console": "warn",
+      "@typescript-eslint/no-explicit-any": "off",
+      "@typescript-eslint/no-empty-function": "off",
+      "react-refresh/only-export-components": [
+        "warn",
+        { allowConstantExport: true },
+      ],
+    },
+  },
+]);
+```
+
+**Key Features:**
+- ✅ TypeScript ESLint recommended rules
+- ✅ React Hooks linting
+- ✅ Automatic import/export sorting
+- ✅ Prettier integration
+- ✅ No duplicate imports
+
+### Prettier Configuration
+
+**Location:** `.prettierrc`
+
+```json
+{
+  "semi": true,
+  "singleQuote": false,
+  "printWidth": 80,
+  "tabWidth": 2,
+  "trailingComma": "es5"
+}
+```
+
+### Git Hooks (Husky)
+
+**Location:** `.husky/`
+
+#### Pre-commit Hook
+
+```bash
+npm run lint:fix  # Auto-fix linting issues
+npm run format    # Format code with Prettier
+```
+
+**Configuration:** `.lintstagedrc`
+
+```json
+{
+  "*.{ts,tsx,js,jsx}": ["prettier --write", "eslint --fix"],
+  "*.{css,scss}": ["prettier --write"]
+}
+```
+
+#### Commit Message Hook
+
+**Tool:** Commitlint
+
+**Format:** Conventional Commits with emoji support
+
+```
+🔥 chore: remove Environment.md documentation file
+
+- Remove docs/Environment.md file
+- Remove Environment.md references from README.md
+```
+
+**Emoji Map:**
+- ✨ feat - New feature
+- 🐛 fix - Bug fix
+- 📝 docs - Documentation
+- 🔧 chore - Tooling, configuration
+- ♻️ refactor - Code refactoring
+- ✅ test - Tests
+- 🚀 ci - CI/CD improvements
+
+### Import Sorting
+
+**Plugin:** `eslint-plugin-simple-import-sort`
+
+**Behavior:**
+```typescript
+// Auto-sorted imports
+import { type FormEvent, useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
+import { useLocation } from "wouter";
+
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { Button } from "@/components/ui/button";
+
+import { useAuth } from "../hooks/useAuth";
+import type { Response } from "../models/common";
+```
+
+**Rules:**
+1. React imports first
+2. External libraries (alphabetical)
+3. Absolute imports (`@/`)
+4. Relative imports (`../`, `./`)
+5. Type-only imports grouped with regular imports
+
 ## Scalability Considerations
 
 ### Current Architecture Supports
@@ -559,6 +934,24 @@ export const useAuth = () => {
    - Components: Add to `components/` folder
    - Types: Add to `models/` folder
 
+### Implemented Features
+
+**Testing & Quality Assurance:**
+- ✅ Vitest with @testing-library/react
+- ✅ 80% coverage requirements
+- ✅ Unit, integration, and service tests
+- ✅ MSW for API mocking
+- ✅ CI/CD with GitHub Actions
+- ✅ Automated linting and formatting
+- ✅ Coveralls coverage reporting
+
+**Code Quality:**
+- ✅ ESLint flat config with TypeScript
+- ✅ Prettier auto-formatting
+- ✅ Automatic import sorting
+- ✅ Husky pre-commit hooks
+- ✅ Commitlint with conventional commits
+
 ### Future Enhancements
 
 **Short-term (1-3 months):**
@@ -568,7 +961,7 @@ export const useAuth = () => {
 - [ ] Implement optimistic updates
 
 **Mid-term (3-6 months):**
-- [ ] Add E2E testing (Playwright)
+- [ ] Add E2E testing (Playwright/Cypress)
 - [ ] Implement feature flags
 - [ ] Add analytics integration
 - [ ] Implement PWA features
@@ -595,5 +988,5 @@ export const useAuth = () => {
 
 ---
 
-**Last Updated:** 2025-01-19
-**Version:** 1.0.0
+**Last Updated:** 2025-11-20
+**Version:** 1.1.0
