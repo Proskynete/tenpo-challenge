@@ -16,9 +16,9 @@ Comprehensive CI pipeline that runs on every push and pull request to `main` and
    - TypeScript type checking
 
 2. **Test** - Test suite execution
-   - Runs on Node.js 18.x and 20.x
+   - Runs on Node.js 22.x and 24.x
    - Executes all tests with coverage
-   - Uploads coverage to Codecov (Node 20.x only)
+   - Uploads coverage to Codecov (Node 24.x only)
 
 3. **Build** - Production build
    - Builds the project for production
@@ -55,7 +55,7 @@ Code quality and formatting checks.
 - Prettier format verification
 - TypeScript type checking
 
-**Node Version:** 20.x
+**Node Version:** 24.x
 
 **Triggers:**
 - Push to `main`, `develop`
@@ -72,7 +72,7 @@ Production build verification.
 - Builds project for production
 - Archives dist/ directory (7-day retention)
 
-**Node Version:** 20.x
+**Node Version:** 24.x
 
 **Triggers:**
 - Push to `main`, `develop`
@@ -133,8 +133,8 @@ Add these badges to your README.md:
 
 ## Node.js Version Strategy
 
-- **CI Workflow:** Tests on Node 18.x and 20.x (current LTS versions)
+- **CI Workflow:** Tests on Node 22.x and 24.x (latest versions)
 - **Test Workflow:** Tests on Node 22.x and 24.x (latest versions)
-- **Lint/Build:** Uses Node 20.x (stable LTS)
+- **Lint/Build:** Uses Node 24.x (latest stable)
 
-This ensures compatibility across different Node.js versions while maintaining stability in core workflows.
+This ensures compatibility with the latest Node.js versions and modern JavaScript features.
