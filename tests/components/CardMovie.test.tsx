@@ -84,7 +84,7 @@ describe("CardMovie", () => {
       render(<CardMovie movie={movie} />);
 
       const badge = screen.getByText("85%");
-      expect(badge).toHaveClass("bg-green-600");
+      expect(badge).toHaveClass("bg-emerald-600");
     });
 
     it("should display yellow badge for medium ratings (50-69%)", () => {
@@ -92,7 +92,7 @@ describe("CardMovie", () => {
       render(<CardMovie movie={movie} />);
 
       const badge = screen.getByText("60%");
-      expect(badge).toHaveClass("bg-yellow-600");
+      expect(badge).toHaveClass("bg-amber-600");
     });
 
     it("should display red badge for low ratings (<50%)", () => {
@@ -100,7 +100,7 @@ describe("CardMovie", () => {
       render(<CardMovie movie={movie} />);
 
       const badge = screen.getByText("40%");
-      expect(badge).toHaveClass("bg-red-600");
+      expect(badge).toHaveClass("bg-red-800");
     });
 
     it("should round rating to nearest integer", () => {
@@ -123,7 +123,7 @@ describe("CardMovie", () => {
       render(<CardMovie movie={movie} />);
 
       const badge = screen.getByText("70%");
-      expect(badge).toHaveClass("bg-green-600");
+      expect(badge).toHaveClass("bg-emerald-600");
     });
 
     it("should handle edge case of exactly 50% rating", () => {
@@ -131,7 +131,7 @@ describe("CardMovie", () => {
       render(<CardMovie movie={movie} />);
 
       const badge = screen.getByText("50%");
-      expect(badge).toHaveClass("bg-yellow-600");
+      expect(badge).toHaveClass("bg-amber-600");
     });
   });
 
