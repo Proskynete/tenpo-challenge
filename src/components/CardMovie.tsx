@@ -10,25 +10,25 @@ export const CardMovie = ({ movie }: { movie: Movie }) => {
   const rating = Math.round(movie.vote_average * 10);
 
   const getRatingColor = (score: number) => {
-    if (score >= 70) return "bg-green-600";
-    if (score >= 50) return "bg-yellow-600";
-    return "bg-red-600";
+    if (score >= 70) return "bg-emerald-600";
+    if (score >= 50) return "bg-amber-600";
+    return "bg-red-800";
   };
 
   return (
-    <Card className="overflow-hidden hover:shadow-lg transition-shadow h-full">
-      <CardContent className="p-0 h-full flex flex-col">
+    <Card className="h-full overflow-hidden transition-shadow hover:shadow-lg">
+      <CardContent className="flex flex-col h-full p-0">
         <div className="relative">
           {movie.backdrop_path ? (
             <img
               src={`https://media.themoviedb.org/t/p/w500${movie.poster_path}`}
               alt={movie.title}
-              className="w-full aspect-2/3 object-cover"
+              className="object-cover w-full aspect-2/3"
               loading="lazy"
             />
           ) : (
-            <div className="w-full aspect-2/3 bg-gray-300">
-              <div className="w-full h-full bg-gray-400 flex justify-center items-center">
+            <div className="w-full bg-gray-300 aspect-2/3">
+              <div className="flex items-center justify-center w-full h-full bg-gray-400">
                 {t("common.noImage")}
               </div>
             </div>
@@ -47,11 +47,11 @@ export const CardMovie = ({ movie }: { movie: Movie }) => {
           </div>
         </div>
 
-        <div className="p-4 space-y-1 flex-1 flex flex-col">
-          <h3 className="font-semibold text-base line-clamp-2 flex-1">
+        <div className="flex flex-col flex-1 p-4 space-y-1">
+          <h3 className="flex-1 text-base font-semibold line-clamp-2">
             {movie.title}
           </h3>
-          <p className="text-sm text-muted-foreground">
+          <p className="text-sm text-zinc-500">
             {formatDate(movie.release_date)}
           </p>
         </div>
