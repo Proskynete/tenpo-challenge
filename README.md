@@ -53,10 +53,11 @@ This is a full-stack React application developed as part of the Tenpo technical 
 
 - **Modern UI/UX**
   - shadcn/ui component library
-  - Tailwind CSS v4 for styling
+  - Tailwind CSS v4 with standard color system
   - Lucide React icons
   - Responsive design (mobile-first)
   - Accessibility-ready components
+  - Light mode only (dark mode removed for simplicity)
 
 ### Technical Features
 
@@ -64,6 +65,12 @@ This is a full-stack React application developed as part of the Tenpo technical 
   - Full type safety across the application
   - ESLint with TypeScript support
   - Prettier code formatting
+
+- **Performance Optimizations**
+  - Route-based code splitting with React.lazy
+  - Lazy loading for page components
+  - 15% bundle size reduction (602 kB → 510 kB)
+  - Separate chunks for route modules
 
 - **Development Tools**
   - Husky for Git hooks
@@ -193,7 +200,8 @@ tenpo-challenge/
 │   │       ├── en.json      # English translations
 │   │       └── es.json      # Spanish translations
 │   ├── routes/              # Route definitions
-│   │   └── index.tsx
+│   │   ├── index.tsx        # Router with lazy-loaded routes
+│   │   └── LazyComponent.tsx # Utility for lazy loading with Suspense
 │   ├── models/              # TypeScript interfaces
 │   │   ├── auth.ts
 │   │   ├── common.ts
