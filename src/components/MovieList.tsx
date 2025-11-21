@@ -57,7 +57,7 @@ export const MovieList = () => {
       <div className="flex items-center justify-center h-96">
         <div className="flex flex-col items-center gap-4">
           <Loader2 className="h-16 w-16 animate-spin text-primary" />
-          <p className="text-muted-foreground">{t("movies.loading")}</p>
+          <p className="text-gray-500">{t("movies.loading")}</p>
         </div>
       </div>
     );
@@ -86,7 +86,7 @@ export const MovieList = () => {
 
       {isFetchingNextPage && (
         <div className="text-center py-8">
-          <div className="inline-flex items-center gap-2 text-muted-foreground">
+          <div className="inline-flex items-center gap-2 text-gray-500">
             <Loader2 className="h-4 w-4 animate-spin" />
             {t("movies.loadingMore")}
           </div>
