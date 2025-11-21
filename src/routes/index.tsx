@@ -1,8 +1,11 @@
+import { lazy } from "react";
 import { Redirect, Route, Switch } from "wouter";
 
 import { ProtectedRoute } from "../components/ProtectedRoute";
-import { Home } from "../pages/Home";
-import { Login } from "../pages/Login";
+import { LC } from "./LazyComponent";
+
+const Home = LC(lazy(() => import("../pages/Home")));
+const Login = LC(lazy(() => import("../pages/Login")));
 
 export const Router = () => {
   return (

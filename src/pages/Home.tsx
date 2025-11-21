@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { MovieList } from "../components/MovieList";
 import { useAuth } from "../hooks/useAuth";
 
-export const Home = () => {
+const Home = () => {
   const { t } = useTranslation();
   const [, setLocation] = useLocation();
   const { logout } = useAuth();
@@ -51,3 +51,5 @@ export const Home = () => {
     </div>
   );
 };
+
+export default Home;

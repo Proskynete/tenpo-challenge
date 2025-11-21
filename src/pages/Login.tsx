@@ -12,7 +12,7 @@ import { Label } from "@/components/ui/label";
 import { useAuth } from "../hooks/useAuth";
 import type { Response } from "../models/common";
 
-export const Login = () => {
+const Login = () => {
   const { t } = useTranslation();
   const [, setLocation] = useLocation();
   const { login, isLoading, loginResponse, isAuthenticated, error } = useAuth();
@@ -101,3 +101,5 @@ export const Login = () => {
     </div>
   );
 };
+
+export default Login;
