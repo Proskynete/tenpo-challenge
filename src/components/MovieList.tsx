@@ -56,7 +56,7 @@ export const MovieList = () => {
     return (
       <div className="flex items-center justify-center h-96">
         <div className="flex flex-col items-center gap-4">
-          <Loader2 className="h-16 w-16 animate-spin text-primary" />
+          <Loader2 className="h-16 w-16 animate-spin text-gray-900" />
           <p className="text-gray-500">{t("movies.loading")}</p>
         </div>
       </div>
