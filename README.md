@@ -26,6 +26,7 @@
 This is a full-stack React application developed as part of the Tenpo technical challenge. The application features user authentication, movie browsing with infinite scroll, internationalization support, and a modern, responsive UI built with shadcn/ui components.
 
 **Live Demo Credentials:**
+
 - Email: `leopoldo.henchoz@tenpo.cl`
 - Password: any password (mocked authentication)
 
@@ -82,44 +83,44 @@ This is a full-stack React application developed as part of the Tenpo technical 
 
 ### Core
 
-| Technology | Version | Purpose |
-|------------|---------|---------|
-| React | 19.2 | UI library with automatic JSX runtime |
-| TypeScript | 5.9 | Type-safe JavaScript |
-| Vite | 7.2 | Build tool and dev server |
+| Technology | Version | Purpose                               |
+| ---------- | ------- | ------------------------------------- |
+| React      | 19.2    | UI library with automatic JSX runtime |
+| TypeScript | 5.9     | Type-safe JavaScript                  |
+| Vite       | 7.2     | Build tool and dev server             |
 
 ### State Management & Data Fetching
 
-| Technology | Version | Purpose |
-|------------|---------|---------|
-| TanStack Query | 5.90 | Server state management |
-| Axios | 1.13 | HTTP client |
+| Technology     | Version | Purpose                 |
+| -------------- | ------- | ----------------------- |
+| TanStack Query | 5.90    | Server state management |
+| Axios          | 1.13    | HTTP client             |
 
 ### UI & Styling
 
-| Technology | Version | Purpose |
-|------------|---------|---------|
-| Tailwind CSS | 4.1 | Utility-first CSS framework |
-| shadcn/ui | Latest | Accessible component library |
-| Lucide React | 0.554 | Icon library |
-| Radix UI | Latest | Unstyled accessible primitives |
+| Technology   | Version | Purpose                        |
+| ------------ | ------- | ------------------------------ |
+| Tailwind CSS | 4.1     | Utility-first CSS framework    |
+| shadcn/ui    | Latest  | Accessible component library   |
+| Lucide React | 0.554   | Icon library                   |
+| Radix UI     | Latest  | Unstyled accessible primitives |
 
 ### Routing & i18n
 
-| Technology | Version | Purpose |
-|------------|---------|---------|
-| Wouter | 3.7 | Lightweight router |
-| i18next | 25.6 | Internationalization framework |
-| react-i18next | 16.3 | React bindings for i18next |
+| Technology    | Version | Purpose                        |
+| ------------- | ------- | ------------------------------ |
+| Wouter        | 3.7     | Lightweight router             |
+| i18next       | 25.6    | Internationalization framework |
+| react-i18next | 16.3    | React bindings for i18next     |
 
 ### Development Tools
 
-| Technology | Version | Purpose |
-|------------|---------|---------|
-| ESLint | 9.39 | Linting |
-| Prettier | 3.6 | Code formatting |
-| Husky | 9.1 | Git hooks |
-| MSW | 2.12 | API mocking |
+| Technology | Version | Purpose         |
+| ---------- | ------- | --------------- |
+| ESLint     | 9.39    | Linting         |
+| Prettier   | 3.6     | Code formatting |
+| Husky      | 9.1     | Git hooks       |
+| MSW        | 2.12    | API mocking     |
 
 ## Getting Started
 
@@ -131,27 +132,32 @@ This is a full-stack React application developed as part of the Tenpo technical 
 ### Installation
 
 1. **Clone the repository**
+
    ```bash
    git clone https://github.com/your-username/tenpo-challenge.git
    cd tenpo-challenge
    ```
 
 2. **Install dependencies**
+
    ```bash
    npm install
    ```
 
 3. **Configure environment variables**
+
    ```bash
    cp .env.example .env
    ```
 
    Then edit `.env` and add your TMDb API key:
+
    ```env
-   VITE_TMDB_API_KEY=your_api_key_here
+   VITE_TMDB_API_KEY=your_api_key_here # 7731000248d6df7604f1524f4ad13ac0
    ```
 
 4. **Start the development server**
+
    ```bash
    npm run dev
    ```
@@ -236,19 +242,19 @@ tenpo-challenge/
 
 ## Available Scripts
 
-| Command | Description |
-|---------|-------------|
-| `npm run dev` | Start development server with HMR |
-| `npm run build` | Type-check and build for production |
-| `npm run preview` | Preview production build locally |
-| `npm run lint` | Run ESLint on all files |
-| `npm run lint:fix` | Run ESLint and auto-fix issues |
-| `npm run format` | Format code with Prettier |
-| `npm run format:check` | Check code formatting |
-| `npm test` | Run all tests once |
-| `npm run test:watch` | Run tests in watch mode |
-| `npm run test:ui` | Open Vitest UI for interactive testing |
-| `npm run test:coverage` | Run tests with coverage report |
+| Command                 | Description                            |
+| ----------------------- | -------------------------------------- |
+| `npm run dev`           | Start development server with HMR      |
+| `npm run build`         | Type-check and build for production    |
+| `npm run preview`       | Preview production build locally       |
+| `npm run lint`          | Run ESLint on all files                |
+| `npm run lint:fix`      | Run ESLint and auto-fix issues         |
+| `npm run format`        | Format code with Prettier              |
+| `npm run format:check`  | Check code formatting                  |
+| `npm test`              | Run all tests once                     |
+| `npm run test:watch`    | Run tests in watch mode                |
+| `npm run test:ui`       | Open Vitest UI for interactive testing |
+| `npm run test:coverage` | Run tests with coverage report         |
 
 ## Authentication
 
@@ -312,6 +318,7 @@ For detailed architecture documentation, see [docs/Architecture.md](./docs/Archi
 The application uses a **CSS Grid + Intersection Observer** approach instead of virtualization:
 
 **Why this approach?**
+
 - Simpler implementation and maintenance
 - Better suited for card-based layouts
 - Native browser API (Intersection Observer)
@@ -319,6 +326,7 @@ The application uses a **CSS Grid + Intersection Observer** approach instead of 
 - Responsive grid (2-5 columns based on screen size)
 
 **Key features:**
+
 - TanStack Query handles pagination automatically
 - Loads next page when user scrolls near bottom
 - Caches loaded pages for instant navigation
@@ -340,6 +348,7 @@ const languageCode = browserLocale.split("-")[0]; // "es"
 ```
 
 **Translation keys structure:**
+
 ```json
 {
   "common": { ... },
@@ -379,6 +388,7 @@ footer (optional)
 **Types:** feat, fix, docs, style, refactor, test, chore
 
 **Example:**
+
 ```
 feat(auth): implement logout endpoint integration
 
@@ -425,13 +435,9 @@ npx msw init public/ --save
 **Solution:** Check your API key in `.env` file
 
 ```env
-VITE_TMDB_API_KEY=your_valid_api_key
+VITE_TMDB_API_KEY=your_valid_api_key # 7731000248d6df7604f1524f4ad13ac0
 ```
 
 ## License
 
 This project is developed as part of a technical challenge and is not licensed for production use.
-
----
-
-**Built with d for Tenpo**
