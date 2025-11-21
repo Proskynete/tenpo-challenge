@@ -5,7 +5,7 @@ import { Router, useLocation } from "wouter";
 import { memoryLocation } from "wouter/memory-location";
 
 import * as useAuthHook from "../../src/hooks/useAuth";
-import { Home } from "../../src/pages/Home";
+import Home from "../../src/pages/Home";
 import { render, screen, waitFor } from "../test-utils";
 
 // Mock useAuth hook

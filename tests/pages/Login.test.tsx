@@ -7,7 +7,7 @@ import { memoryLocation } from "wouter/memory-location";
 
 import * as useAuthHook from "../../src/hooks/useAuth";
 import type { Response } from "../../src/models/common";
-import { Login } from "../../src/pages/Login";
+import Login from "../../src/pages/Login";
 import { render, screen, waitFor } from "../test-utils";
 
 // Mock useAuth hook
